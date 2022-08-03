@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void findsum(TreeNode* root,int targetSum,vector<vector<int>> &ans,vector<int> &tmp,int currsum)
+    void findsum(TreeNode* root,int targetSum,vector<vector<int>> &ans,vector<int> tmp,int currsum)
     {
         if(root==NULL)
             return ;
