@@ -1,1 +1,1 @@
-​
+// The question is same as allocation nnumber of pages
