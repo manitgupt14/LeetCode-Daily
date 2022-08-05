@@ -1,18 +1,19 @@
 class Solution {
 public:
     int firstUniqChar(string s) {
-        int hash[26]={0};
-        for(int i=0;i<s.size();i++)
+      for(int i=0;i<s.size();i++)
         {
-            hash[s[i]-'a']++;
-        }
-        
-        for(int i=0;i<s.size();i++)
-        {
-            if(hash[s[i]-'a']==1)
+            int j;
+            for(j=0;j<s.size();j++)
+            {
+                if(s[i]==s[j] and i!=j)
+                    break;
+            }
+            if(j==s.size())
                 return i;
         }
-        return -1;
+        
+        return -1;  
         
     }
 };
