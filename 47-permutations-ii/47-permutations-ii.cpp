@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void permute(vector<int> nums,int ide,vector<vector<int>> &ans)
+    void permute(vector<int> &nums,int ide,vector<vector<int>> &ans)
     {
         if(ide>=nums.size())
         {
@@ -15,7 +15,7 @@ public:
                  continue;
              swap(nums[i],nums[ide]);
              permute(nums,ide+1,ans);
-             //swap(nums[i],nums[ide]);
+             swap(nums[i],nums[ide]);
          }
     }
     vector<vector<int>> permuteUnique(vector<int>& nums) {
