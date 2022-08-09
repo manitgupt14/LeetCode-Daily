@@ -1,27 +1,32 @@
+void solve(int target,vector<int> &candidates,int i,vector<vector<int>> &ans,vector<int> &temp)
+{
+    if(i>=candidates.size())
+    {
+        return ;
+    }
+    if(target==0)
+    {
+        ans.push_back(temp);
+        return ;
+    }
+    
+    else if(target<0)
+    return ;   
+    
+    vector<int> k=temp;
+    k.push_back(candidates[i]);
+    solve(target-candidates[i],candidates,i,ans,k);
+    solve(target,candidates,i+1,ans,temp);
+    
+    return ;
+}
 class Solution {
 public:
-    void findSum(vector<int> &cs,int tt,int sm,int ide,vector<vector<int>> &ans,vector<int> &temp)
-    {
-        if(sm==tt)
-        {
-            ans.push_back(temp);
-            return ;
-        }
-        if(sm>tt or ide>=cs.size())
-            return ;
-        
-        sm+=cs[ide];
-        temp.push_back(cs[ide]);
-        findSum(cs,tt,sm,ide,ans,temp);
-        temp.pop_back();
-        sm-=cs[ide];
-        findSum(cs,tt,sm,ide+1,ans,temp);
-        
-    }
-    vector<vector<int>> combinationSum(vector<int>& cs, int tt) {
-      vector<vector<int>> ans;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
         vector<int> temp;
-        findSum(cs,tt,0,0,ans,temp);
+        solve(target,candidates,0,ans,temp);
+        
         return ans;
     }
 };
