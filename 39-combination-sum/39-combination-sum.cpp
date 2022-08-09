@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void findSum(vector<int> &cs,int tt,int sm,int ide,vector<vector<int>> &ans,vector<int> temp)
+    void findSum(vector<int> &cs,int tt,int sm,int ide,vector<vector<int>> &ans,vector<int> &temp)
     {
         if(sm==tt)
         {
