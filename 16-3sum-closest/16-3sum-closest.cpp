@@ -15,6 +15,8 @@ public:
                 if(sm==target)
                 {
                 return target;
+                while(j<k and nums[j]==nums[j-1]) j++;
+                while(j<k and nums[k]==nums[k-1]) k--;
                 j++;
                 k--;
                 }
