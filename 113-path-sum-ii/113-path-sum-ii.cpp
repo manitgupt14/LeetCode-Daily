@@ -1,20 +1,9 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
-    void findsum(TreeNode* root,int targetSum,vector<vector<int>> &ans,vector<int> tmp,int currsum)
+    void findsum(TreeNode* root,int targetSum,vector<vector<int>> &ans,vector<int> &tmp,int &currsum)
     {
         if(root==NULL)
-            return ;
+            return ; 
         
         tmp.push_back(root->val);
         currsum+=root->val;
@@ -22,28 +11,26 @@ public:
         if(root->left==NULL and root->right==NULL)
         {
             if(targetSum==currsum)
-            {
-                ans.push_back(tmp);
-                tmp.pop_back();
+            ans.push_back(tmp);
+            
+            currsum-=tmp.back();
+            tmp.pop_back();
                 return ;
-            }
-            else
-            {
-                tmp.pop_back();
-                return ;
-            }
         }
         
-        findsum(root->left,targetSum,ans,tmp,currsum);
+        findsum(root->left,targetSum,ans,tmp,currsum); 
         findsum(root->right,targetSum,ans,tmp,currsum);
         
+        currsum-=tmp.back();
         tmp.pop_back();
+        
         return ;
     }
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
-       vector<vector<int>> ans;
-        vector<int> tmp;
-        findsum(root,targetSum,ans,tmp,0);
+       vector<vector<int>> ans; 
+        vector<int> tmp; 
+        int currsum=0;
+        findsum(root,targetSum,ans,tmp,currsum); 
         return ans;
     }
 };
