@@ -9,45 +9,38 @@
  */
 class Solution {
 public:
-    void findpar(unordered_map<TreeNode *,TreeNode *> &mp,TreeNode *par,TreeNode *root)
+    unordered_map<TreeNode *,TreeNode *> mp;
+    unordered_set<TreeNode *> us;
+    void findpar(TreeNode *root,TreeNode *par)
     {
-         if(root==NULL) return ;
-        
+        if(!root) return ;
         mp[root]=par;
-        
-        findpar(mp,root,root->left);
-        findpar(mp,root,root->right);
-        
+        findpar(root->left,root);
+        findpar(root->right,root);
         return ;
     }
-    void findarr(TreeNode *root,vector<int> &ans,unordered_map<TreeNode *,TreeNode *> &mp,int dis,int k,TreeNode* target,unordered_set<TreeNode *> &visi)
+    void findans(TreeNode *root,int di,vector<int> &ans,int k)
     {
-        if(root==NULL) return ;
+        if(!root or us.find(root)!=us.end())
+        return ;
         
-        if(visi.find(root)!=visi.end())
-            return ;
-        
-        if(dis==k)
+        if(di==k)
         {
             ans.push_back(root->val);
             return ;
         }
-        else if(dis==k)
-            return ;
+        us.insert(root);
         
-        visi.insert(root); 
-        findarr(root->left,ans,mp,dis+1,k,target,visi);
-        findarr(root->right,ans,mp,dis+1,k,target,visi);
-        findarr(mp[root],ans,mp,dis+1,k,target,visi);
-        
+        findans(mp[root],di+1,ans,k);
+        findans(root->left,di+1,ans,k);
+        findans(root->right,di+1,ans,k);
         return ;
     }
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
-        vector<int> ans;
-        unordered_map<TreeNode *,TreeNode *> mp;
-        findpar(mp,NULL,root);
-        unordered_set<TreeNode *> visi;
-        findarr(target,ans,mp,0,k,target,visi);
+         vector<int> ans;
+        
+        findpar(root,NULL);
+        findans(target,0,ans,k);
         return ans;
     }
 };
