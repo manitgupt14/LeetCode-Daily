@@ -26,12 +26,16 @@ public:
                 swap(es[i][0],es[i][3]);
         }
         sort(es.begin(),es.end(),cmp);
-        for(auto it:es)
-            cout<<it<<" ";
+        // for(auto it:es)
+        //     cout<<it<<" ";
         for(int i=0;i<es.size();i++)
         {
             char sf=es[i][0];
             char fs=es[i][3];
+            if(sf==fs and es[i][1]=='=')
+                continue;
+            else if(sf==fs and es[i][1]=='!')
+                return false;
             char par_sf=findpar(hash,sf);
             char par_fs=findpar(hash,fs);
             if(es[i][1]=='!')
