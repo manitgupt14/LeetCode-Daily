@@ -19,15 +19,15 @@ public:
         {
             qw.push(NULL);
             int vl;
-            if(l%2==0) vl=-1;
-            else vl=1e7;
+            if(l&1) vl=INT_MAX;
+            else vl=-1;
             while(qw.front()!=NULL)
             {
                 TreeNode *tp=qw.front();
                 qw.pop();
-                if(l%2==0 and (tp->val%2==0 or tp->val<=vl))
+                if(!(l&1) and (!(tp->val&1) or tp->val<=vl))
                     return false;
-                 if(l%2!=0 and (tp->val%2!=0 or tp->val>=vl))
+                 if((l&1) and ((tp->val&1) or tp->val>=vl))
                     return false;
                 vl=tp->val;
                 if(tp->left) qw.push(tp->left);
