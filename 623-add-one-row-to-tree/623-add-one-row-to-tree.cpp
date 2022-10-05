@@ -11,9 +11,8 @@
  */
 class Solution {
 public:
-    TreeNode* add(TreeNode* root,int val,int depth,bool isleft)
-    {
-        if(depth==0)
+    TreeNode* addOneRow(TreeNode* root, int val, int depth,bool isleft=true) {
+        if(depth==1)
         {
             if(root==NULL)
                 return new TreeNode(val);
@@ -23,15 +22,9 @@ public:
                 return new TreeNode(val,NULL,root);
         }
         if(!root) return NULL;
-        root->left=add(root->left,val,depth-1,true);
-        root->right=add(root->right,val,depth-1,false);
+        root->left=addOneRow(root->left,val,depth-1,true);
+        root->right=addOneRow(root->right,val,depth-1,false);
         
-        return root;
-       
-        
-    }
-    TreeNode* addOneRow(TreeNode* root, int val, int depth) {
-        root=add(root,val,depth-1,true);
         return root;
     }
 };
