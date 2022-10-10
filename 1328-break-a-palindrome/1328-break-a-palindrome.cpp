@@ -1,27 +1,16 @@
 class Solution {
 public:
     string breakPalindrome(string p) {
-        if(p.size()==1)
-        {
-           return "";           
-        }
+        if(p.size()==1) return "";
         
-        int flag=0;
-        for(int i=0;i<p.size();i++)
-        {
-            if(p[i]>'a' and i!=p.size()/2)
+        for(int i=0;i<p.size()/2;i++)
+            if(p[i]>'a')
             {
                 p[i]='a';
-                flag=1;
-                break;
+                return p;
             }
-        }
-        if(!flag)
-        {
-            p[p.size()-1]='b';
-        }
         
-        return p;
-        
+        p[p.size()-1]='b';
+        return p;        
     }
 };
