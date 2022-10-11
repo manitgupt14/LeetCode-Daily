@@ -22,19 +22,19 @@ class Solution{
     {
         
         int low=0,high=n-1;
-        int tmp=0;
+        int tmp=-1;
         while(low<=high)
         {
             int mid=low+(high-low)/2;
             if(arr2[mid]<=arr1[i])
             {
-                tmp=mid+1;
+                tmp=mid;
                 low=mid+1;
             }
             else
             high=mid-1;
         }
-        ans.push_back(tmp);
+        ans.push_back(tmp+1);
     }
     
     return ans;
