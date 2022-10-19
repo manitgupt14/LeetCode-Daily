@@ -6,27 +6,22 @@ using namespace std;
 class Solution
 {
     private:
-    bool dfs(vector<int> adj[],vector<int> &visi,int i,int n)
+    bool dfs(vector<int> adj[],vector<int> &visi,int i,int n,int &ct)
     {
         if(visi[i]==1)
         return false;
         
         visi[i]=1;
-        
-        int flag=0;
-        for(int i=0;i<n;i++)
-        {
-            if(visi[i]==0)
-            flag=1;
-        }
-        if(!flag)
+        ct++;
+        if(ct==n)
         return true;
         
         for(auto it:adj[i])
         {
-            if(dfs(adj,visi,it,n))
+            if(dfs(adj,visi,it,n,ct))
             return true;
         }
+        ct--;
         visi[i]=0;
         return false;
     }
@@ -46,7 +41,8 @@ class Solution
         
         for(int i=0;i<N;i++)
         {
-            bool flag=dfs(adj,visi,i,N);
+            int ct=0;
+            bool flag=dfs(adj,visi,i,N,ct);
             if(flag)
             return true;
         }
