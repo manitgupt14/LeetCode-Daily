@@ -7,7 +7,7 @@ public:
         return a.second>b.second;
     }
     vector<string> topKFrequent(vector<string>& words, int k) {
-        map<string,int> mp;
+        unordered_map<string,int> mp;
         for(auto it:words)
             mp[it]++;
         vector<pair<string,int>> vp;
