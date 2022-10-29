@@ -16,8 +16,9 @@ public:
         int mxpl=0;
         for(int i=0;i<vp.size();i++)
         {
+            mx=max(mxpl+vp[i].second+vp[i].first,mx);
             mxpl+=vp[i].first;
-            mx=max(mxpl+vp[i].second,mx);
+            
         }
         return mx;
     }
