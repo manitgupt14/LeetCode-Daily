@@ -17,6 +17,8 @@ class Solution {
              count++;
              k/=i;
            }
+           if(count<m)
+           break;
            if(count==m)
            return "Yes";
        }
