@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 	public:
 		int characterReplacement(string s, int k){
-		   int start=0,mx=0,ans=0;
+		    int start=0,mx=0,ans=0;
            int arr[26]={0};
            for(int i=0;i<s.length();i++){
             arr[s[i]-'A']+=1;
